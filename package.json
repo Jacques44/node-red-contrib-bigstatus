@@ -1,0 +1,26 @@
+{
+  "name": "node-red-contrib-bigstatus",
+  "version": "1.0.0",
+  "description": "A Big Status node",
+  "dependencies": {
+    "moment": "^2.13.0"
+  },
+  "keywords": [
+    "node-red"
+  ],
+  "node-red": {
+    "nodes": {
+      "bigstatus": "bigstatus/bigstatus.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jacques44/node-red-contrib-bigstatus"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Jacques44/node-red-contrib-bigstatus/issues"
+  },
+  "homepage": "https://github.com/Jacques44/node-red-contrib-bigstatus",
+  "_id": "node-red-contrib-bigstatus@1.0.0"
+}
