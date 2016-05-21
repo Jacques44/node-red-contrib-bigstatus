@@ -89,14 +89,15 @@ module.exports = function(RED) {
           ret.type = msg.config.type;
         }
 
-        node.send({ payload: ret });
+        msg.payload = ret;
+        node.send(msg);
 
       } else {    
         if (msg.shape) status.shape = msg.shape;
         if (msg.fill) status.fill = msg.fill;
-        status.text = msg.text || msg.payload;
+        msg.payload = status.text = msg.text || msg.payload;
 
-        node.send({ payload: msg.text  });
+        node.send(msg);
       }
 
       this.status(status);
