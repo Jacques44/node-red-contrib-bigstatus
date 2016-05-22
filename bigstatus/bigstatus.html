@@ -26,6 +26,12 @@
   </div>  
 
   <div class="form-row">
+      <label>&nbsp;</label>
+      <input type="checkbox" id="node-input-show_duration" style="display: inline-block; width: auto; vertical-align: top;">
+      <label for="node-input-show_duration" style="width: 70%;"><span data-i18n="bigstatus.label.show_duration"></span></label>
+  </div>  
+
+  <div class="form-row">
       <label for="node-input-name"><i class="fa fa-tag"></i><span data-i18n="bigstatus.label.name"></span></label>
       <input type="text" id="node-input-name" data-i18n="[placeholder]bigstatus.label.name">
   </div>
@@ -41,14 +47,15 @@
 
         defaults: {               // defines the editable properties of the node
             name: {value:""},     //  along with default values.
-            locale: {value:""}
+            locale: {value:""},
+            show_duration: { value: false }
         },
 
         inputs:1,               // set the number of inputs - only 0 or 1
         outputs:1,              // set the number of outputs - 0 to n
 
         // set the icon (held in icons dir below where you save the node)
-        icon: "debug.png",      // saved in  icons/myicon.png
+        icon: "question.png",      // saved in  icons/myicon.png
 
         label: function() {
             return this.name||this.filename||this._("bigstatus.label.nodelabel");

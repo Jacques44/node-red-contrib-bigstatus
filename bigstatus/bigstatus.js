@@ -45,17 +45,20 @@ module.exports = function(RED) {
 
       var status = {};
       if (msg.control) {
-        msg.shape = 'dot';
+        
         switch (msg.control.state) {
           case 'start':
+            status.shape = 'dot';
             status.fill = 'blue';
             status.text = msg.control.message;
             break;
           case 'end':
+            status.shape = 'dot';
             status.fill = 'green';
             status.text = msg.control.message;
             break;
           case 'error':            
+            status.shape = 'dot';
             status.fill = 'red';
             status.text = msg.control.message || 'has error';
             break;
@@ -66,12 +69,17 @@ module.exports = function(RED) {
             break;
         }
 
+        var duration = moment.duration(moment().diff(msg.control.start, 'seconds')).humanize();
+        if (config.show_duration) status.text += duration;
 
-        var ret = { name: msg.name, type: msg.type, state: msg.control.state, start: msg.control.start, end: msg.control.end, message: msg.control.message };
+        var ret = { 
+          duration: duration, text: status.text, shape: status.shape, fill: status.fill, 
+          name: msg.name, type: msg.type, state: msg.control.state, start: msg.control.start, 
+          end: msg.control.end, message: msg.control.message 
+        };
+
         if (msg.control.state == 'running') ret.speed = msg.control.speed;
         if (msg.control.state != 'start') ret.end = msg.control.end;
-
-        ret.duration = moment.duration(moment().diff(msg.control.start, 'seconds')).humanize();
 
         var ntree = function(msg) {
           if (!msg.control) return;

@@ -2,7 +2,8 @@
     "bigstatus": {
         "label": {
             "nodelabel": "Big Status",
-            "name": "Name"
+            "name": "Name",
+            "show_duration": "Show duration"
         }
     }
 }
