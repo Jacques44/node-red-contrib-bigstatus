@@ -13,27 +13,27 @@ npm install node-red-contrib-bigstatus
 
 ## Principles for Big Nodes
  
-See [biglib](https://www.npmjs.com/package/node-red-biglib) for details on Big Nodes
-`Big Lib` and subsequent <code>Big Nodes</code> are a family of nodes build for my own purpose. They are all designed to help me build a complete process for production purposes. For that I needed nodes able to:
+See [biglib](https://www.npmjs.com/package/node-red-biglib) for details on Big Nodes.
+`Big Lib` and subsequent `Big Nodes` are a family of nodes built for my own purpose. They are all designed to help me build a complete process for **production purposes**. For that I needed nodes able to:
 
-* Flow big volume of data (memory control, work with buffers)
-* Work with blocks (buffers) (multiple payload within a single job)
-* Tell what they are doing with extended use of statuses (color/message)
-* Use their second output for flow control (start/stop/running/status)
-* Reuse messages in order to propagate _msgid, topic
-* Depends on *state of the art* for parsing (csv, xml, xlsxs, line, ...)
-* Acts as filters (default 1 payload = 1 action) or data generators (block flow)
+* Flow **big volume** of data (memory control, work with buffers)
+* Work with *a flow of blocks* (buffers) (multiple payload within a single job)
+* Tell what *they are doing* with extended use of statuses (color/message)
+* Use their *second output for flow control* (start/stop/running/status)
+* *Reuse messages* in order to propagate _msgid, topic
+* Depends on **state of the art** libraries for parsing (csv, xml, xlsxs, line, ...)
+* Acts as **filters by default** (1 payload = 1 action) or **data generators** (block flow)
 
-All functionnalities are build under a library named <code>biglib</code> and all <code>Big Nodes</code> rely on it
+All functionnalities are build under a library named `biglib` and all `Big Nodes` rely on it
 
 ## Usages
 
-`Big Status` is a *debug node* for **Big Nodes**. It acts as a filter for control messages and resend them as payloads suitable for debug
+`Big Status` is a *debug node* for **Big Nodes**. It acts as a **filter** for control messages and resend them as payloads suitable for debug
 
 It works both ways:
 
-* Connected to the second output of a *Big Node*, it shows the visually the control data sent
-* Controlled by messages, it can be used to show custom informations. It can be useful used with *status node* for triggering something elsewhere
+* Connected to the second output of a *Big Node*, it **shows visually the control data**
+* Controlled **by messages**, it can be used to show custom informations. It can be useful used with *status node* for triggering something elsewhere
 
 ## Configuration
 
@@ -44,9 +44,14 @@ This node has several properties
 
 You can control the node by sending custom messages:
 
+See [Node Status](http://nodered.org/docs/creating-nodes/status) node-red documentation page for details.
+
 * `payload` or `text` is the text shown under the node
 * `shape` (`ring` or `dot`): if defined, draws an icon
 * `fill` (`blue`, `red`, `yellow`, `grey` or `green`): the color for the icon. If none is set and shape defined, the color will be `black`
+
+![alt tag](https://cloud.githubusercontent.com/assets/18165555/15453875/43bc8b32-2026-11e6-891c-6fd64e16c0a0.png)
+
 
 ## Dependencies
 
