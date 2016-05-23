@@ -17,13 +17,11 @@
 
   /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
  
-   Big Nodes principles:
- 
-   #1 can handle big data
-   #2 send status messages on a second output (start, end, running, error)
-   #3 visually tell what they are doing (blue: ready/running, green: ok/done, error)
-
-   Any issues? https://github.com/Jacques44
+ *  Big Nodes familly, see Big Lib
+ *
+ *  https://www.npmjs.com/package/node-red-biglib
+ *
+ *  Any issues? https://github.com/Jacques44
  
   /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 
@@ -45,17 +43,20 @@ module.exports = function(RED) {
 
       var status = {};
       if (msg.control) {
-        msg.shape = 'dot';
+        
         switch (msg.control.state) {
           case 'start':
+            status.shape = 'dot';
             status.fill = 'blue';
             status.text = msg.control.message;
             break;
           case 'end':
+            status.shape = 'dot';
             status.fill = 'green';
             status.text = msg.control.message;
             break;
           case 'error':            
+            status.shape = 'dot';
             status.fill = 'red';
             status.text = msg.control.message || 'has error';
             break;
@@ -66,12 +67,17 @@ module.exports = function(RED) {
             break;
         }
 
+        var duration = moment.duration(moment().diff(msg.control.start, 'seconds')).humanize();
+        if (config.show_duration) status.text +=  " (" + duration + ")";
 
-        var ret = { name: msg.name, type: msg.type, state: msg.control.state, start: msg.control.start, end: msg.control.end, message: msg.control.message };
+        var ret = { 
+          duration: duration, text: status.text, shape: status.shape, fill: status.fill, 
+          name: msg.name, type: msg.type, state: msg.control.state, start: msg.control.start, 
+          end: msg.control.end, message: msg.control.message 
+        };
+
         if (msg.control.state == 'running') ret.speed = msg.control.speed;
         if (msg.control.state != 'start') ret.end = msg.control.end;
-
-        ret.duration = moment.duration(moment().diff(msg.control.start, 'seconds')).humanize();
 
         var ntree = function(msg) {
           if (!msg.control) return;
@@ -89,14 +95,15 @@ module.exports = function(RED) {
           ret.type = msg.config.type;
         }
 
-        node.send({ payload: ret });
+        msg.payload = ret;
+        node.send(msg);
 
       } else {    
         if (msg.shape) status.shape = msg.shape;
         if (msg.fill) status.fill = msg.fill;
-        status.text = msg.text || msg.payload;
+        msg.payload = status.text = msg.text || msg.payload;
 
-        node.send({ payload: msg.text  });
+        node.send(msg);
       }
 
       if (config.show_date) {

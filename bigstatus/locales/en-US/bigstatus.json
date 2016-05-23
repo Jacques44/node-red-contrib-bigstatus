@@ -3,7 +3,8 @@
         "label": {
             "nodelabel": "Big Status",
             "name": "Name",
-            "show_date": "Show date"
+            "show_date": "Add update timestamp",
+            "show_duration": "Show duration"
         }
     }
 }
