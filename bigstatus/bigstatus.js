@@ -99,7 +99,14 @@ module.exports = function(RED) {
         node.send({ payload: msg.text  });
       }
 
-      this.status(status);
+      if (config.show_date) {
+        status.text += " @ " + moment(new Date()).format("LLLL");
+      }
+
+      this.status({});
+      setTimeout(function() {
+        this.status(status);
+      }.bind(this), 200);
 
     });
 

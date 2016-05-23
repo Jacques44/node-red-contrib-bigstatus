@@ -26,6 +26,12 @@
   </div>  
 
   <div class="form-row">
+      <label>&nbsp;</label>
+      <label for="node-input-show_date" style="width: 30%;"><i class="fa fa-clock-o"></i> <span data-i18n="bigstatus.label.show_date"></span></label>
+      <input style="width: 10%;" type="checkbox" id="node-input-show_date" data-i18n="[placeholder]bigstatus.label.show_date">
+  </div>    
+
+  <div class="form-row">
       <label for="node-input-name"><i class="fa fa-tag"></i><span data-i18n="bigstatus.label.name"></span></label>
       <input type="text" id="node-input-name" data-i18n="[placeholder]bigstatus.label.name">
   </div>
@@ -41,7 +47,8 @@
 
         defaults: {               // defines the editable properties of the node
             name: {value:""},     //  along with default values.
-            locale: {value:""}
+            locale: {value:""},
+            show_date: { value: true }
         },
 
         inputs:1,               // set the number of inputs - only 0 or 1
