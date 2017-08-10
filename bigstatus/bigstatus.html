@@ -26,6 +26,26 @@
   </div>  
 
   <div class="form-row">
+      <label for="node-input-shape"><i class="fa fa-pencil"></i> Shape</label>
+      <select type="text" id="node-input-shape" style="width:70%;">
+          <option></option>
+          <option value="dot">Dot</option>
+          <option value="ring">Ring</option>
+      </select>
+  </div>     
+  <div class="form-row">
+      <label for="node-input-fill"><i class="fa fa-paint-brush"></i> Color</label>
+      <select type="text" id="node-input-fill" style="width:70%;">
+          <option></option>
+          <option value="blue">Blue</option>
+          <option value="green">Green</option>
+          <option value="grey">Grey</option>
+          <option value="red">Red</option>
+          <option value="yellow">Yellow</option>
+      </select>
+  </div>   
+    
+  <div class="form-row">
       <label>&nbsp;</label>
       <input type="checkbox" id="node-input-show_date" style="display: inline-block; width: auto; vertical-align: top;">
       <label for="node-input-show_date" style="width: 70%;"><span data-i18n="bigstatus.label.show_date"></span></label>
@@ -55,6 +75,8 @@
         defaults: {               // defines the editable properties of the node
             name: {value:""},     //  along with default values.
             locale: {value:""},
+            shape: {value:""},
+            fill: {value:""},
             show_date: { value: true },
             show_duration: { value: false }
         },
