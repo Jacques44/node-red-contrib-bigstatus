@@ -42,6 +42,15 @@ module.exports = function(RED) {
     this.on('input', function(msg) {
 
       var status = {};
+      
+      if (config.shape) {
+        status.shape = config.shape;
+      }
+      
+      if (config.fill) {
+        status.fill = config.fill;
+      }      
+      
       if (msg.control) {
         
         switch (msg.control.state) {
@@ -121,5 +130,3 @@ module.exports = function(RED) {
 
   RED.nodes.registerType("bigstatus", bigstatus);
 }
-
-
