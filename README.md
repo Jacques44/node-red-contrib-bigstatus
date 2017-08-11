@@ -40,8 +40,8 @@ It works both ways:
 This node has several properties
 
 * `Locale` is used to compute durations in human form. You can tell which locale, the moment library will use
-* `Shape` is used to setup a common status shape for all messages.  This setting can be overruled by the `msg.shape`.
-* `Color` is used to setup a common status fill color for all messages.  This setting can be overruled by the `msg.fill`.
+* `Shape` is used to setup a common status shape for all messages.  This setting will overrule the `msg.shape`.
+* `Color` is used to setup a common status fill color for all messages.  This setting will overrule the `msg.fill`.
 * `Add update timestamp` is used to add the current timestamp.
 * `Show duration` is used to add a computed duration base on `control start/stop/running` informations sent by `Big Nodes`
 
