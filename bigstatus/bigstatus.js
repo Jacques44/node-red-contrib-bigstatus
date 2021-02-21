@@ -41,7 +41,8 @@ module.exports = function(RED) {
 
     this.on('input', function(msg) {
 
-      var status = {};
+      var status = {};  
+      
       if (msg.control) {
         
         switch (msg.control.state) {
@@ -66,6 +67,9 @@ module.exports = function(RED) {
             status.text = msg.control.message;
             break;
         }
+        
+        if (config.shape) status.shape = config.shape;
+        if (config.fill)  status.fill  = config.fill;
 
         var duration = moment.duration(moment().diff(msg.control.start, 'seconds')).humanize();
         if (config.show_duration) status.text +=  " (" + duration + ")";
@@ -101,6 +105,10 @@ module.exports = function(RED) {
       } else {    
         if (msg.shape) status.shape = msg.shape;
         if (msg.fill) status.fill = msg.fill;
+        
+        if (config.shape) status.shape = config.shape;
+        if (config.fill)  status.fill  = config.fill;
+        
         msg.payload = status.text = msg.text || msg.payload;
 
         node.send(msg);
